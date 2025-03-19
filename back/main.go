@@ -28,13 +28,12 @@ func main() {
 	database.Connet()
 
 	// 🔹 Servir archivos estáticos de Vue (JS, CSS, imágenes)
-	r.Static("/static", "./dist/assets") 
+	r.Static("/assets", "./dist/assets") 
 
 	// 🔹 Servir el archivo index.html como la página principal
 	r.LoadHTMLFiles("dist/index.html")
 
-	//* 🔹 Ruta principal para cargar Vue
-	r.GET("/index", func(c *gin.Context) {
+	r.NoRoute(func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nil)
 	})
 
